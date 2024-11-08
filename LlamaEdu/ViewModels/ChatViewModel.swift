@@ -21,5 +21,8 @@ class ChatViewModel: ObservableObject {
         let message = Message(id: UUID(), text: text, type: .human, timestamp: Date())
         messages.append(message)
         
+        let payload = BodyRequest(messages: messages.map {
+            Message(id: $0.id, text: $0.text, type: $0.type, timestamp: $0.timestamp)
+        }, subject: subject.rawValue)
     }
 }
