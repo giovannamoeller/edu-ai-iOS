@@ -21,11 +21,10 @@ struct ChatNavigationView: View {
     @State private var selectedSubject: Subject = .matematica
     
     var body: some View {
-        VStack {
-            SubjectPickerView(selection: $selectedSubject)
-            Text(selectedSubject.rawValue)
-        }
-            
+        ChatView(subject: selectedSubject)
+            .safeAreaInset(edge: .top) {
+                SubjectPickerView(selection: $selectedSubject)
+            }
     }
 }
 
