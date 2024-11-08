@@ -9,9 +9,17 @@ import SwiftUI
 
 @main
 struct LlamaEduApp: App {
+    @StateObject private var authManager = AuthenticationManager()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if authManager.isAuthenticated {
+                HomeView()
+                    .environmentObject(authManager)
+            } else {
+                LoginView()
+                    .environmentObject(authManager)
+            }
         }
     }
 }
