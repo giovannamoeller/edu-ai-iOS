@@ -18,14 +18,14 @@ enum Subject: String, CaseIterable {
 }
 
 struct ChatNavigationView: View {
-    let subjects = Subject.allCases
-    @State private var selectedSubject = ""
+    @State private var selectedSubject: Subject = .matematica
     
     var body: some View {
-        Text(selectedSubject)
-            .onAppear {
-                self.selectedSubject = subjects.first!.rawValue
-            }
+        VStack {
+            SubjectPickerView(selection: $selectedSubject)
+            Text(selectedSubject.rawValue)
+        }
+            
     }
 }
 
