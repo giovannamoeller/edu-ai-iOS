@@ -12,7 +12,7 @@ class AuthenticationManager: ObservableObject {
     @Published var user: User?
     
     func signIn() {
-        self.user = User(id: "39103010", firstName: "Giovanna", lastName: "Moeller", email: "giovannamoeller18@gmail.com")
+        self.user = User(firstName: "Giovanna", lastName: "Moeller", email: "giovannamoeller18@gmail.com")
         self.isAuthenticated = true
     }
     

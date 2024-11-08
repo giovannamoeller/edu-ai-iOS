@@ -8,7 +8,7 @@
 import Foundation
 
 struct User {
-    let id: String
+    let id: UUID = UUID()
     let firstName: String?
     let lastName: String?
     let email: String
