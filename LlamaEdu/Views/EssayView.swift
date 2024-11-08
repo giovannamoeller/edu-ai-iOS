@@ -15,13 +15,13 @@ struct EssayView: View {
             VStack {
                 switch viewModel.state {
                 case .idle:
-                    Text("Idle")
+                    EssayUploadView()
                 case .loading:
-                    Text("Loading...")
+                    ProgressView("Analisando sua redação...")
                 case .success:
-                    Text("Sucesso!")
+                    EssayCorrectionResultView()
                 case .error:
-                    Text("Erro!")
+                    ErrorView()
                 }
             }
             .navigationTitle("Correção de Redação")
