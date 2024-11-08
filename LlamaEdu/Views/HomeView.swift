@@ -13,11 +13,21 @@ enum Tab {
 
 struct HomeView: View {
     @State private var selectedTab: Tab = .chat
-
+    
     var body: some View {
         NavigationStack {
             TabView(selection: $selectedTab) {
-                Text("Helo!")
+                ChatNavigationView()
+                    .tabItem {
+                        Label("Chat", systemImage: "message.fill")
+                    }
+                    .tag(Tab.chat)
+                
+                EssayView()
+                    .tabItem {
+                        Label("Redação", systemImage: "doc.text.fill")
+                    }
+                    .tag(Tab.essay)
             }
         }
     }
