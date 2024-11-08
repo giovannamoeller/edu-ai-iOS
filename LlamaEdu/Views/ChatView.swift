@@ -17,11 +17,15 @@ struct ChatView: View {
             ScrollView {
                 LazyVStack {
                     ForEach(viewModel.messages) { message in
-                        //MessageBubble(message: message)
-                        Text(message.text)
+                        MessageBubbleView(message: message)
                     }
                 }
                 .padding()
+            }
+            
+            MessageInputView(message: $newMessage) {
+                await viewModel.sendMessage(newMessage, subject: subject)
+                newMessage = ""
             }
         }
         .task {
