@@ -15,7 +15,7 @@ struct EssayView: View {
             VStack {
                 switch viewModel.state {
                 case .idle:
-                    EssayUploadView()
+                    EssayUploadView(viewModel: viewModel)
                 case .loading:
                     ProgressView("Analisando sua redação...")
                 case .success:
