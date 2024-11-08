@@ -9,7 +9,7 @@ import Foundation
 
 @MainActor
 class ChatViewModel: ObservableObject {
-    @Published var messages: [Message] = []
+    @Published var messages: [Message] = [.init(id: UUID(), text: "oichat", type: .human, timestamp: Date())]
     @Published var isLoading: Bool = false
     
     func loadPreviousMessages(for subject: Subject) async throws {
