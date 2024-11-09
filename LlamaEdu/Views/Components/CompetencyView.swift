@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CompetencyView: View {
-    let competency: Competency
+    let competency: CompetencyResult
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -33,5 +33,5 @@ struct CompetencyView: View {
 }
 
 #Preview {
-    CompetencyView(competency: Competency(id: 1, feedback: "Muito bom!", grade: 180))
+    CompetencyView(competency: CompetencyResult(id: 1, feedback: "Muito bom!", grade: 180))
 }

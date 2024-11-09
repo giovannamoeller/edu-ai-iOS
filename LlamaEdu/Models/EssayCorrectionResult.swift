@@ -11,7 +11,7 @@ struct EssayCorrectionResult: Codable {
     let id: String
     let rawContent: String?
     let url: String
-    let feedback: [Competency]?
+    let feedback: [CompetencyResult]?
     let finalFeedback: String?
     let totalScore: Int?
     let createdAt: String

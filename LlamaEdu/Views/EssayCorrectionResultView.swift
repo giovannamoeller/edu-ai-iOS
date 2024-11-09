@@ -27,5 +27,5 @@ struct EssayCorrectionResultView: View {
 }
 
 #Preview {
-    EssayCorrectionResultView(result: EssayCorrectionResult(id: "1", rawContent: "a", url: "url", feedback: [Competency(id: 1, feedback: "Muito bom", grade: 200)], finalFeedback: "muito bom", totalScore: 1000, createdAt: "2024-11-09T18:56:25.625Z", updatedAt: "2024-11-09T18:56:25.625Z"))
+    EssayCorrectionResultView(result: EssayCorrectionResult(id: "1", rawContent: "a", url: "url", feedback: [CompetencyResult(id: 1, feedback: "Muito bom", grade: 200)], finalFeedback: "muito bom", totalScore: 1000, createdAt: "2024-11-09T18:56:25.625Z", updatedAt: "2024-11-09T18:56:25.625Z"))
 }
