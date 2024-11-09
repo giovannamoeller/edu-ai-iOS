@@ -7,9 +7,10 @@
 
 import Foundation
 
-struct EssayCorrectionResult: Codable {
+struct Essay: Identifiable, Codable {
     let id: String
     let rawContent: String?
+    let subject: String
     let url: String
     let feedback: [CompetencyResult]?
     let finalFeedback: String?

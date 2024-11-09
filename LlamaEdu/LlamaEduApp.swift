@@ -14,13 +14,14 @@ struct LlamaEduApp: App {
     
     var body: some Scene {
         WindowGroup {
-            if authManager.isAuthenticated {
+            /*if authManager.isAuthenticated {
                 HomeView()
                     .environmentObject(authManager)
             } else {
                 LoginView()
                     .environmentObject(authManager)
-            }
+            }*/
+            HomeView()
         }
     }
 }

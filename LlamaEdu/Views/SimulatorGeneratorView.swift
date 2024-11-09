@@ -9,7 +9,10 @@ import SwiftUI
 
 struct SimulatorGeneratorView: View {
     var body: some View {
-        Text("Gerador de simulados")
+        VStack {
+            Text("Gerador de simulados")
+        }
+        .navigationTitle("Titulo")
     }
 }
 

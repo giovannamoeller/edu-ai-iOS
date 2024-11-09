@@ -58,9 +58,10 @@ class WebService {
         }
     }
     
-    func uploadImage(file: URL) async throws -> EssayCorrectionResult {
+    func uploadImage(file: URL, subject: String) async throws -> Essay {
         let endpoint = "/essays/upload"
         let fileData = try Data(contentsOf: file)
+        print(subject)
         
         guard let url = URL(string: baseURL + endpoint) else {
             throw APIError.invalidURL
@@ -74,8 +75,10 @@ class WebService {
         
         var bodyData = Data()
         
-        // Add boundary prefix
         bodyData.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        bodyData.append("Content-Disposition: form-data; name=\"\(subject)\"\r\n\r\n".data(using: .utf8)!)
+        bodyData.append("\(subject)\r\n".data(using: .utf8)!)
+        //print(subject.data(using: .utf8)!)
         
         // Add file data
         bodyData.append("Content-Disposition: form-data; name=\"file\"; filename=\"\(file.absoluteString)\"\r\n".data(using: .utf8)!)
@@ -88,6 +91,8 @@ class WebService {
         // Set the body
         request.httpBody = bodyData
         
+        print("Request body (preview):", String(data: bodyData.prefix(1000), encoding: .utf8) ?? "")
+        
         let (data, response) = try await URLSession.shared.data(for: request)
         
         guard let httpResponse = response as? HTTPURLResponse else {
@@ -97,14 +102,41 @@ class WebService {
         guard (200...299).contains(httpResponse.statusCode) else {
             // Try to parse error message if available
             //if let errorMessage = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
-                //throw APIError.serverError(errorMessage.message)
-           // }
+            //throw APIError.serverError(errorMessage.message)
+            // }
             throw APIError.httpError(httpResponse.statusCode)
         }
         
         do {
-            let result = try decoder.decode(EssayCorrectionResult.self, from: data)
+            let result = try decoder.decode(Essay.self, from: data)
             return result
+        } catch {
+            print("Decoding error:", error)
+            throw APIError.decodingError
+        }
+    }
+    
+    func fetchEssays() async throws -> [Essay] {
+        let endpoint = "/essays"
+        guard let url = URL(string: baseURL + endpoint) else {
+            throw APIError.invalidURL
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw APIError.invalidResponse
+        }
+        
+        guard (200...299).contains(httpResponse.statusCode) else {
+            throw APIError.httpError(httpResponse.statusCode)
+        }
+        
+        do {
+            return try decoder.decode([Essay].self, from: data)
         } catch {
             print("Decoding error:", error)
             throw APIError.decodingError

@@ -16,36 +16,26 @@ struct HomeView: View {
     let webService = WebService()
     
     var body: some View {
-        NavigationStack {
-            TabView(selection: $selectedTab) {
-                /*ChatNavigationView()
-                 .tabItem {
-                 Label("Chat", systemImage: "message.fill")
-                 }
-                 .tag(Tab.chat)*/
-                
-                EssayView()
-                    .tabItem {
-                        Label("Redação", systemImage: "doc.text.fill")
-                    }
-                    .tag(Tab.essay)
-                
-                SimulatorGeneratorView()
-                    .tabItem {
-                        Label("Simulados", systemImage: "questionmark.circle.fill")
-                    }
-                    .tag(Tab.simulator)
-            }
-        }
-        .onAppear {
-            Task {
-                do {
-                    try await webService.test()
-                } catch {
-                    
+        TabView(selection: $selectedTab) {
+            /*ChatNavigationView()
+             .tabItem {
+             Label("Chat", systemImage: "message.fill")
+             }
+             .tag(Tab.chat)*/
+            
+            EssayHistoryView()
+                .tabItem {
+                    Label("Redação", systemImage: "doc.text.fill")
                 }
-            }
+                .tag(Tab.essay)
+            
+            SimulatorGeneratorView()
+                .tabItem {
+                    Label("Simulados", systemImage: "questionmark.circle.fill")
+                }
+                .tag(Tab.simulator)
         }
+        
     }
 }
 
