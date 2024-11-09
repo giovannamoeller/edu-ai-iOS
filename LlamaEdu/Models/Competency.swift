@@ -7,8 +7,8 @@
 
 import Foundation
 
-enum Competency {
-    case one, two, three, four, five
+enum Competency: Int {
+    case one = 1, two, three, four, five
     
     var romanNumeral: String {
         switch self {
