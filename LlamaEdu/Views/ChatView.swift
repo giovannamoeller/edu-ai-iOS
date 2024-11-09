@@ -35,5 +35,5 @@ struct ChatView: View {
 }
 
 #Preview {
-    ChatView(subject: .biologia)
+    ChatView(subject: .biology)
 }

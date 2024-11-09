@@ -28,5 +28,5 @@ struct SubjectPickerView: View {
 }
 
 #Preview {
-    SubjectPickerView(selection: .constant(.biologia))
+    SubjectPickerView(selection: .constant(.biology))
 }
