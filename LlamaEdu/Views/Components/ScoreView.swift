@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ScoreView: View {
-    let score: Double
+    let score: Int
     
     var percentage: String {
         return String(format: "%.1f%%", score * 10)
@@ -31,7 +31,7 @@ struct ScoreView: View {
                 Text(percentage)
             }
             
-            ProgressView(value: score * 10, total: 100.0)
+            ProgressView(value: Double(score) * 10, total: 100.0)
                 .padding(.vertical, 8)
                 .scaleEffect(x: 1, y: 2, anchor: .center)
             
@@ -48,5 +48,5 @@ struct ScoreView: View {
 }
 
 #Preview {
-    ScoreView(score: 7.0)
+    ScoreView(score: 700)
 }

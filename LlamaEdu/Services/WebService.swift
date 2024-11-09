@@ -32,6 +32,12 @@ enum APIError: Error, LocalizedError {
 
 class WebService {
     private let baseURL: String = "https://edu-bff.fly.dev"
+    private let decoder: JSONDecoder
+    
+    init() {
+        self.decoder = JSONDecoder()
+        //decoder.dateDecodingStrategy = .iso8601
+    }
     
     func test() async throws {
         print("oi")
@@ -52,7 +58,7 @@ class WebService {
         }
     }
     
-    func uploadImage(file: URL) async throws -> String {
+    func uploadImage(file: URL) async throws -> EssayCorrectionResult {
         let endpoint = "/essays/upload"
         let fileData = try Data(contentsOf: file)
         
@@ -89,12 +95,18 @@ class WebService {
         }
         
         guard (200...299).contains(httpResponse.statusCode) else {
+            // Try to parse error message if available
+            //if let errorMessage = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
+                //throw APIError.serverError(errorMessage.message)
+           // }
             throw APIError.httpError(httpResponse.statusCode)
         }
         
-        if let responseString = String(data: data, encoding: .utf8) {
-            return responseString
-        } else {
+        do {
+            let result = try decoder.decode(EssayCorrectionResult.self, from: data)
+            return result
+        } catch {
+            print("Decoding error:", error)
             throw APIError.decodingError
         }
     }

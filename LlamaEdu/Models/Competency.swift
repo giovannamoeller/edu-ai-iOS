@@ -7,10 +7,8 @@
 
 import Foundation
 
-struct Competency: Identifiable {
-    let id = UUID()
-    let number: Int
-    let description: String
-    let score: Double
+struct Competency: Identifiable, Codable {
+    let id: Int
     let feedback: String
+    let grade: Int
 }

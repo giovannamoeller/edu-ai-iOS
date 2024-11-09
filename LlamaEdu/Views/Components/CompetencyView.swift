@@ -12,13 +12,13 @@ struct CompetencyView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Competência \(competency.number)")
+            Text("Competência \(competency.id)")
                 .font(.headline)
             
-            Text(competency.description)
+            Text("descricao da competencia 1 tambem")
                 .font(.subheadline)
             
-            Text("Nota: \(String(format: "%.1f", competency.score))")
+            Text("Nota: \(String(format: "%.1f", competency.grade))")
                 .font(.title3)
                 .foregroundColor(.blue)
             
@@ -33,5 +33,5 @@ struct CompetencyView: View {
 }
 
 #Preview {
-    CompetencyView(competency: Competency(number: 1, description: "Competência 1", score: 6.0, feedback: "Muito bom!"))
+    CompetencyView(competency: Competency(id: 1, feedback: "Muito bom!", grade: 180))
 }

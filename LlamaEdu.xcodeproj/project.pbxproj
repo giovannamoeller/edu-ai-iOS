@@ -6,11 +6,6 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		48FE9ACC2CDFBDB700D36435 /* AWSS3 in Frameworks */ = {isa = PBXBuildFile; productRef = 48FE9ACB2CDFBDB700D36435 /* AWSS3 */; };
-		48FE9AD12CDFBF2B00D36435 /* AWSCognitoIdentityProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 48FE9AD02CDFBF2B00D36435 /* AWSCognitoIdentityProvider */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXContainerItemProxy section */
 		48FE9A752CDDAF8000D36435 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -57,8 +52,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48FE9ACC2CDFBDB700D36435 /* AWSS3 in Frameworks */,
-				48FE9AD12CDFBF2B00D36435 /* AWSCognitoIdentityProvider in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,8 +120,6 @@
 			);
 			name = LlamaEdu;
 			packageProductDependencies = (
-				48FE9ACB2CDFBDB700D36435 /* AWSS3 */,
-				48FE9AD02CDFBF2B00D36435 /* AWSCognitoIdentityProvider */,
 			);
 			productName = LlamaEdu;
 			productReference = 48FE9A642CDDAF7F00D36435 /* LlamaEdu.app */;
@@ -213,7 +204,6 @@
 			mainGroup = 48FE9A5B2CDDAF7F00D36435;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				48FE9ACA2CDFBDB700D36435 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 48FE9A652CDDAF7F00D36435 /* Products */;
@@ -578,30 +568,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		48FE9ACA2CDFBDB700D36435 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/awslabs/aws-sdk-swift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.36;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		48FE9ACB2CDFBDB700D36435 /* AWSS3 */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 48FE9ACA2CDFBDB700D36435 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */;
-			productName = AWSS3;
-		};
-		48FE9AD02CDFBF2B00D36435 /* AWSCognitoIdentityProvider */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 48FE9ACA2CDFBDB700D36435 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */;
-			productName = AWSCognitoIdentityProvider;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 48FE9A5C2CDDAF7F00D36435 /* Project object */;
 }

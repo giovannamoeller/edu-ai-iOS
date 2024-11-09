@@ -11,6 +11,7 @@ enum EssayCorrectionError: Error {
     case invalidImage
     case unreadableImage
     case networkError(Error)
+    case other(String)
     
     var title: String {
         switch self {
@@ -20,6 +21,8 @@ enum EssayCorrectionError: Error {
             return "Imagem Ilegível"
         case .networkError:
             return "Erro de Conexão"
+        case .other(let str):
+            return str
         }
     }
     
@@ -31,6 +34,8 @@ enum EssayCorrectionError: Error {
             return "Não foi possível identificar o texto na imagem. Por favor, certifique-se que a imagem está nítida e bem iluminada."
         case .networkError:
             return "Ocorreu um erro ao tentar enviar sua redação. Por favor, verifique sua conexão e tente novamente."
+        case .other(let str):
+            return "Ocorreu um erro. Tente novamente."
         }
     }
 }

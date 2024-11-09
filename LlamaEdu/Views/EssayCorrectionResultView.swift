@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct EssayCorrectionResultView: View {
-    let result: CorrectionResult
+    let result: EssayCorrectionResult
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                ScoreView(score: result.totalScore)
-                ForEach(result.competencies) { competency in
+                ScoreView(score: result.totalScore ?? 0)
+                ForEach(result.feedback ?? []) { competency in
                     CompetencyView(competency: competency)
                 }
-                if !result.suggestions.isEmpty {
+                /*if !result.suggestions.isEmpty {
                     SuggestionsView(suggestions: result.suggestions)
-                }
+                }*/
             }
             .padding()
         }
@@ -27,5 +27,5 @@ struct EssayCorrectionResultView: View {
 }
 
 #Preview {
-    EssayCorrectionResultView(result: CorrectionResult(totalScore: 8.5, competencies: [.init(number: 1, description: "A", score: 0.5, feedback: "Oii")], suggestions: ["Oii"]))
+    EssayCorrectionResultView(result: EssayCorrectionResult(id: "1", rawContent: "a", url: "url", feedback: [Competency(id: 1, feedback: "Muito bom", grade: 200)], finalFeedback: "muito bom", totalScore: 1000, createdAt: "2024-11-09T18:56:25.625Z", updatedAt: "2024-11-09T18:56:25.625Z"))
 }

@@ -16,21 +16,23 @@ class EssayCorrectionViewModel: ObservableObject {
     enum CorrectionState {
         case idle
         case loading
-        case success(CorrectionResult)
+        case success(EssayCorrectionResult)
         case error(EssayCorrectionError)
     }
     
     func uploadImage(file: (URL)) async {
+        state = .loading
         do {
-            
-            //let base64String = fileData.base64EncodedString()
-            
             let result = try await webService.uploadImage(file: file)
-            print(result)
-            
-        } catch(let error) {
-            print("erro burra")
-            print(error.localizedDescription)
+            await MainActor.run {
+                state = .success(result)
+            }
+        } catch {
+            await MainActor.run {
+                if let _ = error as? APIError {
+                    state = .error(.other(error.localizedDescription))
+                }
+            }
         }
     }
     
