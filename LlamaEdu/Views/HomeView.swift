@@ -13,6 +13,7 @@ enum Tab {
 
 struct HomeView: View {
     @State private var selectedTab: Tab = .chat
+    let webService = WebService()
     
     var body: some View {
         NavigationStack {
@@ -34,6 +35,15 @@ struct HomeView: View {
                         Label("Simulados", systemImage: "questionmark.circle.fill")
                     }
                     .tag(Tab.simulator)
+            }
+        }
+        .onAppear {
+            Task {
+                do {
+                    try await webService.test()
+                } catch {
+                    
+                }
             }
         }
     }

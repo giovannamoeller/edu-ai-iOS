@@ -10,19 +10,40 @@ import SwiftUI
 struct ScoreView: View {
     let score: Double
     
+    var percentage: String {
+        return String(format: "%.1f%%", score * 10)
+    }
+    
+    var finalScore: String {
+        return String(format: "%.1f%", score)
+    }
+    
     var body: some View {
         VStack(spacing: 8) {
             Text("Nota Final")
-                .font(.headline)
+                .font(.largeTitle)
+                .bold()
+                .padding(.vertical)
             
-            Text(String(format: "%.1f", score))
-                .font(.system(size: 48, weight: .bold))
-                .foregroundColor(.blue)
+            HStack {
+                Text("Competência Total")
+                Spacer()
+                Text(percentage)
+            }
+            
+            ProgressView(value: score * 10, total: 100.0)
+                .padding(.vertical, 8)
+                .scaleEffect(x: 1, y: 2, anchor: .center)
+            
+            HStack {
+                Text("Nota Final")
+                    .foregroundStyle(.secondary)
+                Spacer()
+                Text(finalScore)
+                    .foregroundStyle(.secondary)
+            }
         }
         .frame(maxWidth: .infinity)
-        .padding()
-        .background(Color.blue.opacity(0.1))
-        .cornerRadius(12)
     }
 }
 

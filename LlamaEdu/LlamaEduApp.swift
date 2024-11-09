@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct LlamaEduApp: App {
     @StateObject private var authManager = AuthenticationManager()
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {
         WindowGroup {

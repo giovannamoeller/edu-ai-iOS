@@ -11,6 +11,7 @@ import SwiftUI
 class EssayCorrectionViewModel: ObservableObject {
     @Published var selectedImage: UIImage?
     @Published var state: CorrectionState = .idle
+    let webService: WebService = WebService()
     
     enum CorrectionState {
         case idle
@@ -20,16 +21,17 @@ class EssayCorrectionViewModel: ObservableObject {
     }
     
     func uploadImage(file: (URL)) async {
-        state = .success(.init(totalScore: 100, competencies: [Competency(number: 1,
-                                                                          description: "Competência #01",
-                                                                          score: 7.0,
-                                                                          feedback: "Feedback #01"),
-                                                               Competency(number: 2,
-                                                                          description: "Competência #02",
-                                                                          score: 8.0,
-                                                                          feedback: "Feedback #02")],
-                               suggestions: ["Sugestão #01", "Sugestão #02"]))
-        //
+        do {
+            
+            //let base64String = fileData.base64EncodedString()
+            
+            let result = try await webService.uploadImage(file: file)
+            print(result)
+            
+        } catch(let error) {
+            print("erro burra")
+            print(error.localizedDescription)
+        }
     }
     
     private func checkImageReadability() async {

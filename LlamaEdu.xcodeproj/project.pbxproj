@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		48FE9ACC2CDFBDB700D36435 /* AWSS3 in Frameworks */ = {isa = PBXBuildFile; productRef = 48FE9ACB2CDFBDB700D36435 /* AWSS3 */; };
+		48FE9AD12CDFBF2B00D36435 /* AWSCognitoIdentityProvider in Frameworks */ = {isa = PBXBuildFile; productRef = 48FE9AD02CDFBF2B00D36435 /* AWSCognitoIdentityProvider */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				48FE9ACC2CDFBDB700D36435 /* AWSS3 in Frameworks */,
+				48FE9AD12CDFBF2B00D36435 /* AWSCognitoIdentityProvider in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +85,7 @@
 				48FE9A662CDDAF7F00D36435 /* LlamaEdu */,
 				48FE9A772CDDAF8000D36435 /* LlamaEduTests */,
 				48FE9A812CDDAF8000D36435 /* LlamaEduUITests */,
+				48FE9ACF2CDFBF2B00D36435 /* Frameworks */,
 				48FE9A652CDDAF7F00D36435 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -95,6 +98,13 @@
 				48FE9A7E2CDDAF8000D36435 /* LlamaEduUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		48FE9ACF2CDFBF2B00D36435 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,6 +128,7 @@
 			name = LlamaEdu;
 			packageProductDependencies = (
 				48FE9ACB2CDFBDB700D36435 /* AWSS3 */,
+				48FE9AD02CDFBF2B00D36435 /* AWSCognitoIdentityProvider */,
 			);
 			productName = LlamaEdu;
 			productReference = 48FE9A642CDDAF7F00D36435 /* LlamaEdu.app */;
@@ -584,6 +595,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 48FE9ACA2CDFBDB700D36435 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */;
 			productName = AWSS3;
+		};
+		48FE9AD02CDFBF2B00D36435 /* AWSCognitoIdentityProvider */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 48FE9ACA2CDFBDB700D36435 /* XCRemoteSwiftPackageReference "aws-sdk-swift" */;
+			productName = AWSCognitoIdentityProvider;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

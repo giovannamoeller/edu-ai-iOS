@@ -19,17 +19,16 @@ struct EssayUploadView: View {
             if let _ = essayFile {
                 Text("Redação selecionada com sucesso!")
             } else {
-                Button("Import") {
+                Button("Importar redação") {
                     importing = true
                 }
                 .fileImporter(
                     isPresented: $importing,
-                    allowedContentTypes: [.pdf, .png, .jpeg, .plainText]
+                    allowedContentTypes: [.pdf, .png, .jpeg]
                 ) { result in
                     switch result {
                     case .success(let file):
                         essayFile = file
-                        print(file.absoluteURL)
                     case .failure(let error):
                         print(error.localizedDescription)
                     }
