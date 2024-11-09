@@ -8,11 +8,18 @@
 import SwiftUI
 
 struct EssayCorrectionResultView: View {
+    let result: CorrectionResult
+    
     var body: some View {
-        Text("Hello, World!")
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                //
+                
+            }
+        }
     }
 }
 
 #Preview {
-    EssayCorrectionResultView()
+    EssayCorrectionResultView(result: CorrectionResult(totalScore: 100, competencies: [.init(number: 1, description: "A", score: 0.5, feedback: "Oii")], suggestions: ["Oii"]))
 }

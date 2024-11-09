@@ -18,9 +18,9 @@ struct EssayView: View {
                     EssayUploadView(viewModel: viewModel)
                 case .loading:
                     ProgressView("Analisando sua redação...")
-                case .success:
-                    EssayCorrectionResultView()
-                case .error:
+                case .success(let result):
+                    EssayCorrectionResultView(result: result)
+                case .error(let error):
                     ErrorView()
                 }
             }

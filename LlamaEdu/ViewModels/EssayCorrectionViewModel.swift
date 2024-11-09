@@ -15,11 +15,12 @@ class EssayCorrectionViewModel: ObservableObject {
     enum CorrectionState {
         case idle
         case loading
-        case success
-        case error
+        case success(CorrectionResult)
+        case error(EssayCorrectionError)
     }
     
-    func uploadImage() async {
+    func uploadImage(file: (URL)) async {
+        state = .loading
         //
     }
     
