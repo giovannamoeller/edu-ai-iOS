@@ -12,9 +12,10 @@ struct Essay: Identifiable, Codable {
     let rawContent: String?
     let subject: String
     let url: String
-    let feedback: [CompetencyResult]?
-    let finalFeedback: String?
+    let fileId: String
     let totalScore: Int?
+    let feedback: Evaluation?
+    let finalFeedback: String?
     let createdAt: String
     let updatedAt: String
     

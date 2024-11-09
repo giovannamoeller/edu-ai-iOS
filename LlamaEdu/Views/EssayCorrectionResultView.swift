@@ -14,9 +14,9 @@ struct EssayCorrectionResultView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 ScoreView(score: result.totalScore ?? 0)
-                ForEach(result.feedback ?? []) { competency in
-                    CompetencyView(competency: competency)
-                }
+                CompetencyView(competency: 1,
+                               grade: result.feedback?.competencia1Grade,
+                               feedback: result.feedback?.competencia1Feedback)
                 /*if !result.suggestions.isEmpty {
                     SuggestionsView(suggestions: result.suggestions)
                 }*/
@@ -29,6 +29,13 @@ struct EssayCorrectionResultView: View {
     }
 }
 
-#Preview {
-    EssayCorrectionResultView(result: Essay(id: "1", rawContent: "a", subject: "Teste", url: "url", feedback: [CompetencyResult(id: 1, feedback: "Muito bom", grade: 200)], finalFeedback: "muito bom", totalScore: 1000, createdAt: "2024-11-09T18:56:25.625Z", updatedAt: "2024-11-09T18:56:25.625Z"))
-}
+/*#Preview {
+    EssayCorrectionResultView(result: Essay(id: "01",
+                                            rawContent: "rawContent",
+                                            subject: "Fome",
+                                            url: "URL",
+                                            feedback: Evaluation(totalScore: 700, competencies: [CompetencyFeedback(grade: 200, feedback: "Ótimo", competency: 1)]), finalFeedback: "Ótimo",
+                                            totalScore: 1000,
+                                            createdAt: String(),
+                                            updatedAt: String()))
+}*/

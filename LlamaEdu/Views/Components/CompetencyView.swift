@@ -8,21 +8,23 @@
 import SwiftUI
 
 struct CompetencyView: View {
-    let competency: CompetencyResult
+    let competency: Int
+    let grade: Int?
+    let feedback: String?
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Competência \(competency.id)")
+            Text("Competência \(competency)")
                 .font(.headline)
             
-            Text("descricao da competencia 1 tambem")
+            Text(Competency.getCompetency(for: competency).description)
                 .font(.subheadline)
             
-            Text("Nota: \(String(format: "%.1f", competency.grade))")
+            Text("Nota: \(String(format: "%.1f", grade ?? 0))")
                 .font(.title3)
                 .foregroundColor(.blue)
             
-            Text(competency.feedback)
+            Text(feedback ?? "")
                 .font(.body)
         }
         .padding()
@@ -32,6 +34,7 @@ struct CompetencyView: View {
     }
 }
 
-#Preview {
-    CompetencyView(competency: CompetencyResult(id: 1, feedback: "Muito bom!", grade: 180))
+/*#Preview {
+    CompetencyView(competency: CompetencyFeedback(grade: 180, feedback: "Muito bom!", competency: 1))
 }
+*/

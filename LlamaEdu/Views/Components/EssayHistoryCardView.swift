@@ -15,14 +15,14 @@ struct EssayHistoryCardView: View {
         return String(format: "%.1f%%", totalScore * 10)
     }
     
-    var competencyMastery: String {
+    /*var competencyMastery: String {
         guard let feedback = essay.feedback else { return "0%" }
-        let grades = feedback.compactMap { $0.grade }
+        let grades = feedback.competencies.map { $0.grade }
         guard !grades.isEmpty else { return "N/A" } // Avoid division by zero
         let gradesSum = Double(grades.reduce(0, +))
         let averageGrade = gradesSum / Double(grades.count)
         return String(format: "%.0f", averageGrade)
-    }
+    }*/
     
     var totalScore: Int {
         return essay.totalScore ?? 0
@@ -56,6 +56,14 @@ struct EssayHistoryCardView: View {
     }
 }
 
-#Preview {
-    EssayHistoryCardView(id: 1, essay: Essay(id: "1", rawContent: "", subject: "as consequencias de ficar muito tempo programando", url: "oie", feedback: [CompetencyResult(id: 1, feedback: "oi", grade: 200)], finalFeedback: "aaa", totalScore: 300, createdAt: "", updatedAt: ""))
+/*#Preview {
+    EssayHistoryCardView(id: 1, essay: Essay(id: "01",
+                                             rawContent: "rawContent",
+                                             subject: "Fome",
+                                             url: "URL",
+                                             feedback: Evaluation(totalScore: 700, competencies: [CompetencyFeedback(grade: 200, feedback: "Ótimo", competency: 1)]), finalFeedback: "Ótimo",
+                                             totalScore: 1000,
+                                             createdAt: String(),
+                                             updatedAt: String()))
 }
+*/
