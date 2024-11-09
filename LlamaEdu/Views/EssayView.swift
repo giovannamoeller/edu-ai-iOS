@@ -21,7 +21,9 @@ struct EssayView: View {
                 case .success(let result):
                     EssayCorrectionResultView(result: result)
                 case .error(let error):
-                    ErrorView()
+                    ErrorView(error: error) {
+                        viewModel.state = .idle
+                    }
                 }
             }
             .navigationTitle("Correção de Redação")

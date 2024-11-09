@@ -20,7 +20,15 @@ class EssayCorrectionViewModel: ObservableObject {
     }
     
     func uploadImage(file: (URL)) async {
-        state = .loading
+        state = .success(.init(totalScore: 100, competencies: [Competency(number: 1,
+                                                                          description: "Competência #01",
+                                                                          score: 7.0,
+                                                                          feedback: "Feedback #01"),
+                                                               Competency(number: 2,
+                                                                          description: "Competência #02",
+                                                                          score: 8.0,
+                                                                          feedback: "Feedback #02")],
+                               suggestions: ["Sugestão #01", "Sugestão #02"]))
         //
     }
     

@@ -8,11 +8,29 @@
 import SwiftUI
 
 struct ErrorView: View {
+    let error: EssayCorrectionError
+    let retry: () -> Void
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(spacing: 16) {
+            Image(systemName: "exclamationmark.triangle.fill")
+                .font(.system(size: 50))
+                .foregroundColor(.red)
+            
+            Text(error.title)
+                .font(.headline)
+            
+            Text(error.message)
+                .multilineTextAlignment(.center)
+                .foregroundColor(.secondary)
+            
+            Button("Tentar Novamente", action: retry)
+                .buttonStyle(.borderedProminent)
+        }
+        .padding()
     }
 }
 
 #Preview {
-    ErrorView()
+    ErrorView(error: .invalidImage, retry: {})
 }
