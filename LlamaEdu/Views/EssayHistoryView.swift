@@ -85,7 +85,7 @@ struct EssayHistoryView: View {
                                 .frame(width: 56, height: 56)
                                 .background(Color.accentColor)
                                 .clipShape(Circle())
-                                .shadow(color: Color.accentColor, radius: 10, x: 0, y: 4)
+                                .shadow(color: Color.accentColor.opacity(0.5), radius: 10, x: 0, y: 10)
                         }
                         .padding(.trailing, 16)
                         .padding(.bottom, 16)
