@@ -36,7 +36,7 @@ struct EssayHistoryView: View {
                                 .background(Color.accentColor)
                                 .foregroundStyle(.white)
                                 .cornerRadius(16.0)
-                                .padding(8)
+                                .padding(.vertical, 8)
                             }
 
                             LazyVStack {
