@@ -10,6 +10,7 @@ import SwiftUI
 struct EssayHistoryView: View {
     @StateObject private var viewModel = EssayHistoryViewModel()
     @State private var isNewEssaySheetPresented = false
+    @State private var isGraphSheetPresented = false
     
     var body: some View {
         NavigationStack {
@@ -22,6 +23,22 @@ struct EssayHistoryView: View {
                         ProgressView("Carregando suas redações...")
                     case .success(let essays):
                         ScrollView(showsIndicators: false) {
+                            Button {
+                                isGraphSheetPresented = true
+                            } label: {
+                                HStack {
+                                    Image(systemName: "chart.line.uptrend.xyaxis")
+                                    Text("Visualizar gráfico de evolução")
+                                }
+                                .frame(maxWidth: .infinity)
+                                .bold()
+                                .padding()
+                                .background(Color.accentColor)
+                                .foregroundStyle(.white)
+                                .cornerRadius(16.0)
+                                .padding(8)
+                            }
+
                             ForEach(Array(essays.enumerated()), id: \.element.id) { index, essay in
                                 EssayHistoryCardView(id: essays.count - index, essay: essay)
                             }
@@ -81,7 +98,6 @@ struct EssayHistoryView: View {
             .onAppear {
                 Task {
                     await viewModel.getEssays()
-                    print(viewModel.essays)
                 }
             }
             .sheet(isPresented: $isNewEssaySheetPresented) {
@@ -89,6 +105,9 @@ struct EssayHistoryView: View {
             } content: {
                 EssayUploadView()
                     .presentationDetents([.large])
+            }
+            .sheet(isPresented: $isGraphSheetPresented) {
+                EssayEvolutionChart(essays: viewModel.essays)
             }
         }
     }
