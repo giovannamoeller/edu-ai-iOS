@@ -22,7 +22,7 @@ struct CompetencyView: View {
             
             Text("Nota nesta modalidade: \(grade)")
                 .font(.subheadline)
-                .foregroundColor(.blue)
+                .foregroundColor(.accentColor)
                 .bold()
             
             Text(feedback)

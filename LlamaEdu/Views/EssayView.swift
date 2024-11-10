@@ -19,7 +19,8 @@ struct EssayView: View {
             case .loading:
                 ProgressView("Analisando sua redação...")
             case .success(let result):
-                EssayCorrectionResultView(result: result)
+                //EssayCorrectionResultView(result: result)
+                EssayHistoryView()
             case .error(let error):
                 ErrorView(error: error) {
                     viewModel.state = .idle

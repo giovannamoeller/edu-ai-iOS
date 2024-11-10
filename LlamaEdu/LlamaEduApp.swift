@@ -9,18 +9,9 @@ import SwiftUI
 
 @main
 struct LlamaEduApp: App {
-    @StateObject private var authManager = AuthenticationManager()
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {
         WindowGroup {
-            /*if authManager.isAuthenticated {
-                HomeView()
-                    .environmentObject(authManager)
-            } else {
-                LoginView()
-                    .environmentObject(authManager)
-            }*/
             HomeView()
         }
     }

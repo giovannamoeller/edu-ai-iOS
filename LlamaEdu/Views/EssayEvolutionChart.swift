@@ -89,7 +89,7 @@ struct EssayEvolutionChart: View {
                         icon: "arrow.down.circle.fill"
                     )
                 }
-                .padding(.top)
+                .padding()
             }
         }
         .padding()

@@ -1,5 +1,5 @@
 //
-//  CompetencyResult.swift
+//  Evaluation.swift
 //  LlamaEdu
 //
 //  Created by Giovanna Moeller on 08/11/24.

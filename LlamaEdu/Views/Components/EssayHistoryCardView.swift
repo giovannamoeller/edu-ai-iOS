@@ -20,7 +20,7 @@ struct EssayHistoryCardView: View {
         HStack {
             VStack(alignment: .leading, spacing: 8) {
                 Text("\(id) - \(essay.subject)")
-                    .foregroundStyle(Color.white)
+                    .foregroundStyle(.primary)
                     .font(.title3)
                     .bold()
                 if let score = essay.totalScore {

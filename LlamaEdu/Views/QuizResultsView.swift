@@ -11,7 +11,7 @@ struct QuizResultsView: View {
     @ObservedObject var viewModel: QuizViewModel
     
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
             VStack(spacing: 20) {
                 Text("Resultado Final")
                     .font(.title)

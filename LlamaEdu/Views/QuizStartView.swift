@@ -13,7 +13,7 @@ struct QuizStartView: View {
     var body: some View {
         VStack(spacing: 20) {
             Text("Teste seus conhecimentos através de simulados")
-                .font(.largeTitle)
+                .font(.title)
                 .bold()
                 .multilineTextAlignment(.center)
             
