@@ -23,42 +23,49 @@ struct EssayHistoryCardView: View {
                     .foregroundStyle(.primary)
                     .font(.title3)
                     .bold()
-                if let score = essay.totalScore {
-                    Text("Nota Final: \(score)")
-                        .font(.subheadline)
-                        .foregroundStyle(Color.text)
-                } else {
-                    HStack(spacing: 8) {
-                        ProgressView()
-                            .scaleEffect(0.8)
-                            .tint(Color.accentColor)
-                        Text("Calculando")
-                            .font(.caption)
-                            .foregroundColor(Color.accentColor)
-                    }
-                }
-                Button {
-                    showDetails = true
-                } label: {
-                    Text("Detalhes")
-                        .font(.caption)
-                        .padding(.vertical, 8)
-                        .padding(.horizontal)
-                        .background(Color.buttonBackground)
-                        .foregroundStyle(.white)
-                        .cornerRadius(24.0)
-                        .padding(.top, 8)
-                        .opacity(essay.totalScore == nil ? 0.5 : 1.0)
-                }
-                .disabled(essay.totalScore == nil)
-            }
-            Spacer()
-            if essay.totalScore == nil {
                 HStack {
-                    Image(systemName: "pencil.and.scribble")
-                        .foregroundStyle(Color.accentColor)
-                    Text("Sua redação está sendo corrigida!")
-                        .font(.caption)
+                    VStack(alignment: .leading) {
+                        if let score = essay.totalScore {
+                            Text("Nota Final: \(score)")
+                                .font(.subheadline)
+                                .foregroundStyle(Color.text)
+                        } else {
+                            HStack(spacing: 8) {
+                                ProgressView()
+                                    .scaleEffect(0.8)
+                                    .tint(Color.accentColor)
+                                Text("Calculando")
+                                    .font(.caption)
+                                    .foregroundColor(Color.accentColor)
+                            }
+                        }
+                        Button {
+                            showDetails = true
+                        } label: {
+                            Text("Detalhes")
+                                .font(.caption)
+                                .padding(.vertical, 8)
+                                .padding(.horizontal)
+                                .background(Color.buttonBackground)
+                                .foregroundStyle(.white)
+                                .cornerRadius(24.0)
+                                .padding(.top, 8)
+                                .opacity(essay.totalScore == nil ? 0.5 : 1.0)
+                        }
+                        .disabled(essay.totalScore == nil)
+                    }
+                    Spacer()
+                    if essay.totalScore == nil {
+                        VStack(spacing: 8.0) {
+                            Image(systemName: "pencil.and.scribble")
+                                .font(.title)
+                                .foregroundStyle(Color.accentColor)
+                            Text("Sua redação está sendo corrigida!")
+                                .font(.caption)
+                                .multilineTextAlignment(.center)
+                        }
+                        .frame(maxWidth: 140)
+                    }
                 }
             }
         }
