@@ -22,8 +22,8 @@ struct EssayHistoryView: View {
                         ProgressView("Carregando suas redações...")
                     case .success(let essays):
                         ScrollView {
-                            ForEach(essays.reversed().indices, id: \.self) { index in
-                                EssayHistoryCardView(id: index + 1, essay: essays[index])
+                            ForEach(Array(essays.enumerated()), id: \.element.id) { index, essay in
+                                EssayHistoryCardView(id: essays.count - index, essay: essay)
                             }
                         }
                         .refreshable {

@@ -30,6 +30,7 @@ final class EssayHistoryViewModel: ObservableObject {
     @Published var state: HistoryState = .idle
     
     let webService: WebService
+    private var pollingTask: Task<Void, Never>?
     
     init(webService: WebService = WebService()) {
         self.webService = webService
@@ -40,6 +41,11 @@ final class EssayHistoryViewModel: ObservableObject {
         do {
             let result = try await webService.fetchEssays()
             self.essays = result
+            
+            if result.contains(where: { $0.totalScore == nil }) {
+                startPolling()
+            }
+            
             if essays.isEmpty {
                 self.state = .empty
             } else {
@@ -53,5 +59,37 @@ final class EssayHistoryViewModel: ObservableObject {
                 self.state = .error(.other("An unknown error occurred"))
             }
         }
+    }
+    
+    private func startPolling() {
+        // Cancel existing polling if any
+        stopPolling()
+        
+        pollingTask = Task {
+            while !Task.isCancelled {
+                do {
+                    // Wait 30 seconds before polling
+                    try await Task.sleep(nanoseconds: 30 * 1_000_000_000)
+                    
+                    // Fetch updated essays
+                    let updatedEssays = try await webService.fetchEssays()
+                    self.essays = updatedEssays
+                    
+                    // If no essays are still processing, stop polling
+                    if !updatedEssays.contains(where: { $0.totalScore == nil }) {
+                        stopPolling()
+                        break
+                    }
+                } catch {
+                    // Continue polling even if there's an error
+                    continue
+                }
+            }
+        }
+    }
+    
+    func stopPolling() {
+        pollingTask?.cancel()
+        pollingTask = nil
     }
 }

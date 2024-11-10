@@ -9,8 +9,8 @@ import SwiftUI
 
 struct CompetencyView: View {
     let competency: Int
-    let grade: Int?
-    let feedback: String?
+    let grade: Int
+    let feedback: String
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -20,12 +20,13 @@ struct CompetencyView: View {
             Text(Competency.getCompetency(for: competency).description)
                 .font(.subheadline)
             
-            Text("Nota: \(String(format: "%.1f", grade ?? 0))")
-                .font(.title3)
+            Text("Nota nesta modalidade: \(grade)")
+                .font(.subheadline)
                 .foregroundColor(.blue)
+                .bold()
             
-            Text(feedback ?? "")
-                .font(.body)
+            Text(feedback)
+                .font(.caption)
         }
         .padding()
         .background(Color.gray.opacity(0.1))

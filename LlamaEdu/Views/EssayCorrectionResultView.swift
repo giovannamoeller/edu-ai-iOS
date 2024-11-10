@@ -14,9 +14,9 @@ struct EssayCorrectionResultView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 ScoreView(score: result.totalScore ?? 0)
-                CompetencyView(competency: 1,
-                               grade: result.feedback?.competencia1Grade,
-                               feedback: result.feedback?.competencia1Feedback)
+                //CompetencyView(competency: 1,
+                               //grade: result.feedback?.competencia1Grade,
+                               //feedback: result.feedback?.competencia1Feedback)
                 /*if !result.suggestions.isEmpty {
                     SuggestionsView(suggestions: result.suggestions)
                 }*/
