@@ -29,9 +29,22 @@
 		48FE9A7E2CDDAF8000D36435 /* LlamaEduUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LlamaEduUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		488076EF2CE07BC300C26B61 /* Exceptions for "LlamaEdu" folder in "LlamaEdu" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 48FE9A632CDDAF7F00D36435 /* LlamaEdu */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		48FE9A662CDDAF7F00D36435 /* LlamaEdu */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				488076EF2CE07BC300C26B61 /* Exceptions for "LlamaEdu" folder in "LlamaEdu" target */,
+			);
 			path = LlamaEdu;
 			sourceTree = "<group>";
 		};
@@ -409,6 +422,9 @@
 				DEVELOPMENT_TEAM = 4VMTKGDC5W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LlamaEdu/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to take photos of your essays";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to select essay photos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -438,6 +454,9 @@
 				DEVELOPMENT_TEAM = 4VMTKGDC5W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LlamaEdu/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to take photos of your essays";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to select essay photos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
