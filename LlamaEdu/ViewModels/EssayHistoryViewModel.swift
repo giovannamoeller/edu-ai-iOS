@@ -73,12 +73,12 @@ final class EssayHistoryViewModel: ObservableObject {
             while !Task.isCancelled {
                 do {
                     // Wait 30 seconds before polling
-                    try await Task.sleep(nanoseconds: 30 * 1_000_000_000)
+                    try await Task.sleep(nanoseconds: 5 * 1_000_000_000)
                     
                     // Fetch updated essays
                     let updatedEssays = try await webService.fetchEssays()
-                    print(updatedEssays)
                     self.essays = updatedEssays
+                    self.state = .success(updatedEssays)
                     
                     // If no essays are still processing, stop polling
                     if !updatedEssays.contains(where: { $0.totalScore == nil }) {
@@ -86,6 +86,7 @@ final class EssayHistoryViewModel: ObservableObject {
                         break
                     }
                 } catch {
+                    print(error)
                     // Continue polling even if there's an error
                     continue
                 }
