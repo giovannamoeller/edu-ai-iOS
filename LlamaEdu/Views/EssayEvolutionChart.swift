@@ -28,8 +28,15 @@ struct EssayEvolutionChart: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16.0) {
-            Text("Evolução das Notas")
-                .font(.headline)
+            Text("Evolução das suas notas")
+                .font(.title)
+                .bold()
+                .frame(maxWidth: .infinity, alignment: .center)
+            
+            Text("Verifique o gráfico abaixo.")
+                .fontWeight(.thin)
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding(.vertical, 8)
             
             if chartData.isEmpty {
                 Text("Sem dados suficientes para gerar o gráfico")
@@ -41,7 +48,7 @@ struct EssayEvolutionChart: View {
                         LineMark(x: .value("Data", data.date, unit: .day),
                                  y: .value("Nota", data.score)
                         )
-                        .interpolationMethod(.catmullRom)
+                        .interpolationMethod(.linear)
                         
                         PointMark(x: .value("Data", data.date, unit: .day),
                                   y: .value("Nota", data.score)
@@ -72,14 +79,14 @@ struct EssayEvolutionChart: View {
             
             // Add statistics
             if !chartData.isEmpty {
-                VStack(spacing: 8) {
+                VStack(spacing: 16.0) {
                     StatisticRow(
                         title: "Média",
                         value: averageScore,
                         icon: "chart.bar.fill"
                     )
                     StatisticRow(
-                        title: "Melhor nota",
+                        title: "Maior nota",
                         value: highestScore,
                         icon: "arrow.up.circle.fill"
                     )
@@ -93,9 +100,9 @@ struct EssayEvolutionChart: View {
             }
         }
         .padding()
-        .background(Color(.systemBackground))
-        .cornerRadius(12)
-        .shadow(color: .black.opacity(0.1), radius: 5)
+        //.background(Color(.systemBackground))
+        //.cornerRadius(12)
+        //.shadow(color: .black.opacity(0.1), radius: 5)
     }
     
     private var averageScore: Int {

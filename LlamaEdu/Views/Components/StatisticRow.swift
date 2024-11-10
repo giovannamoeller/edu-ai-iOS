@@ -22,6 +22,9 @@ struct StatisticRow: View {
             Text("\(value)")
                 .bold()
         }
+        .padding()
+        .background(Color.cardBackground)
+        .cornerRadius(12.0)
     }
 }
 
