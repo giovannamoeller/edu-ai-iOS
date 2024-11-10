@@ -5,7 +5,7 @@
 //  Created by Giovanna Moeller on 09/11/24.
 //
 
-import Foundation
+import SwiftUI
 
 enum HistoryState: Equatable {
     case idle
@@ -40,16 +40,20 @@ final class EssayHistoryViewModel: ObservableObject {
         self.state = .loading
         do {
             let result = try await webService.fetchEssays()
-            self.essays = result
+            withAnimation {
+                self.essays = result
+            }
             
             if result.contains(where: { $0.totalScore == nil }) {
                 startPolling()
             }
             
-            if essays.isEmpty {
-                self.state = .empty
-            } else {
-                self.state = .success(result)
+            withAnimation {
+                if essays.isEmpty {
+                    self.state = .empty
+                } else {
+                    self.state = .success(result)
+                }
             }
         } catch {
             print(error.localizedDescription)

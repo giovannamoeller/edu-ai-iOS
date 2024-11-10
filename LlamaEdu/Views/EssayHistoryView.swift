@@ -39,8 +39,10 @@ struct EssayHistoryView: View {
                                 .padding(8)
                             }
 
-                            ForEach(Array(essays.enumerated()), id: \.element.id) { index, essay in
-                                EssayHistoryCardView(id: essays.count - index, essay: essay)
+                            LazyVStack {
+                                ForEach(Array(essays.enumerated()), id: \.element.id) { index, essay in
+                                    EssayHistoryCardView(id: essays.count - index, essay: essay)
+                                }
                             }
                         }
                         .refreshable {
