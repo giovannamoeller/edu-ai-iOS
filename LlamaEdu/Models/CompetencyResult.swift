@@ -8,9 +8,8 @@
 import Foundation
 
 struct Evaluation: Codable {
-    let theme: String
-    let idEssay: Int
-    let totalScore: Int
+    //let theme: String
+    let idEssay: String
     let rawFeedback: String
     let competencia1Grade: Int
     let competencia2Grade: Int
@@ -24,9 +23,7 @@ struct Evaluation: Codable {
     let competencia5Feedback: String
     
     enum CodingKeys: String, CodingKey {
-        case theme,
-             idEssay = "id_essay",
-             totalScore = "total_score",
+        case idEssay = "id_essay",
              rawFeedback = "raw_feedback",
              competencia1Grade = "competencia_1_grade",
              competencia2Grade = "competencia_2_grade",

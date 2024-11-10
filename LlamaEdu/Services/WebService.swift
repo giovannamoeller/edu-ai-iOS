@@ -61,7 +61,6 @@ class WebService {
     func uploadImage(file: URL, subject: String) async throws -> Essay {
         let endpoint = "/essays/upload"
         let fileData = try Data(contentsOf: file)
-        print(subject)
         
         guard let url = URL(string: baseURL + endpoint) else {
             throw APIError.invalidURL
@@ -75,18 +74,21 @@ class WebService {
         
         var bodyData = Data()
         
-        bodyData.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-        bodyData.append("Content-Disposition: form-data; name=\"\(subject)\"\r\n\r\n".data(using: .utf8)!)
-        bodyData.append("\(subject)\r\n".data(using: .utf8)!)
-        //print(subject.data(using: .utf8)!)
+        // Add subject field
+        bodyData.append("--\(boundary)\r\n".data(using: .utf8)!)
+        bodyData.append("Content-Disposition: form-data; name=\"subject\"\r\n".data(using: .utf8)!)
+        bodyData.append("\r\n".data(using: .utf8)!)
+        bodyData.append(subject.data(using: .utf8)!)
+        bodyData.append("\r\n".data(using: .utf8)!)
         
         // Add file data
-        bodyData.append("Content-Disposition: form-data; name=\"file\"; filename=\"\(file.absoluteString)\"\r\n".data(using: .utf8)!)
-        bodyData.append("Content-Type: application/octet-stream\r\n\r\n".data(using: .utf8)!)
+        bodyData.append("--\(boundary)\r\n".data(using: .utf8)!)
+        bodyData.append("Content-Disposition: form-data; name=\"file\"; filename=\"\(file.lastPathComponent)\"\r\n".data(using: .utf8)!)
+        bodyData.append("Content-Type: \(mimeType(for: file))\r\n\r\n".data(using: .utf8)!)
         bodyData.append(fileData)
         
-        // Add boundary suffix
-        bodyData.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+        // Add final boundary
+        bodyData.append("\r\n--\(boundary)--".data(using: .utf8)!)
         
         // Set the body
         request.httpBody = bodyData
@@ -140,6 +142,19 @@ class WebService {
         } catch {
             print("Decoding error:", error)
             throw APIError.decodingError
+        }
+    }
+    
+    private func mimeType(for url: URL) -> String {
+        switch url.pathExtension.lowercased() {
+        case "pdf":
+            return "application/pdf"
+        case "jpg", "jpeg":
+            return "image/jpeg"
+        case "png":
+            return "image/png"
+        default:
+            return "application/octet-stream"
         }
     }
 }

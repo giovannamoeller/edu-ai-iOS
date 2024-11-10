@@ -22,18 +22,35 @@ struct EssayHistoryView: View {
                         ProgressView("Carregando suas redações...")
                     case .success(let essays):
                         ScrollView {
-                            ForEach(essays.indices, id: \.self) { index in
+                            ForEach(essays.reversed().indices, id: \.self) { index in
                                 EssayHistoryCardView(id: index + 1, essay: essays[index])
                             }
                         }
+                        .refreshable {
+                            await viewModel.getEssays()
+                        }
                     case .error(let essayCorrectionError):
                         ErrorView(error: essayCorrectionError) {
-                            viewModel.state = .idle
+                            Task {
+                                await viewModel.getEssays()
+                            }
                         }
                     case .empty:
-                        Text("Sua lista de redações está vazia.")
-                            .font(.title2)
-                            .bold()
+                        VStack(spacing: 16.0) {
+                            Image(systemName: "applepencil.and.scribble")
+                                .font(.largeTitle)
+                                .foregroundStyle(Color.accentColor)
+                            
+                            Text("Sua lista de redações está vazia.")
+                                .font(.title2)
+                                .bold()
+                            
+                            Text("Clique no botão abaixo para importar uma nova redação.")
+                                .foregroundStyle(Color.text)
+                                .multilineTextAlignment(.center)
+                                .font(.body)
+                                .fontWeight(.thin)
+                        }
                     }
                 }
                 
@@ -51,10 +68,10 @@ struct EssayHistoryView: View {
                                 .frame(width: 56, height: 56)
                                 .background(Color.accentColor)
                                 .clipShape(Circle())
-                                .shadow(radius: 4)
+                                .shadow(color: Color.accentColor, radius: 10, x: 0, y: 4)
                         }
-                        .padding(.leading, 16)
-                        .padding(.bottom, 16) // Add some space above tab bar
+                        .padding(.trailing, 16)
+                        .padding(.bottom, 16)
                     }
                 }
                 
@@ -63,7 +80,14 @@ struct EssayHistoryView: View {
             .onAppear {
                 Task {
                     await viewModel.getEssays()
+                    print(viewModel.essays)
                 }
+            }
+            .sheet(isPresented: $isNewEssaySheetPresented) {
+                //
+            } content: {
+                EssayUploadView()
+                    .presentationDetents([.large])
             }
         }
     }

@@ -39,8 +39,12 @@ final class EssayHistoryViewModel: ObservableObject {
         self.state = .loading
         do {
             let result = try await webService.fetchEssays()
-            self.state = .success(result)
             self.essays = result
+            if essays.isEmpty {
+                self.state = .empty
+            } else {
+                self.state = .success(result)
+            }
         } catch {
             print(error.localizedDescription)
             if let apiError = error as? APIError {

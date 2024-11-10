@@ -20,19 +20,15 @@ class EssayCorrectionViewModel: ObservableObject {
         case error(EssayCorrectionError)
     }
     
-    func uploadImage(file: (URL)) async {
+    func uploadImage(file: (URL), subject: String) async {
         state = .loading
         do {
-            let result = try await webService.uploadImage(file: file, subject: "A crise financeira")
-            await MainActor.run {
-                state = .success(result)
-            }
+            let result = try await webService.uploadImage(file: file, subject: subject)
+            state = .success(result)
         } catch {
-            await MainActor.run {
-                if let _ = error as? APIError {
-                    print(error.localizedDescription)
-                    state = .error(.other(error.localizedDescription))
-                }
+            if let _ = error as? APIError {
+                print(error.localizedDescription)
+                state = .error(.other(error.localizedDescription))
             }
         }
     }
