@@ -29,7 +29,7 @@ struct HomeView: View {
                 }
                 .tag(Tab.essay)
             
-            SimulatorGeneratorView()
+            QuizView()
                 .tabItem {
                     Label("Simulados", systemImage: "questionmark.circle.fill")
                 }

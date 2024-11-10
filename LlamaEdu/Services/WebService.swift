@@ -157,4 +157,30 @@ class WebService {
             return "application/octet-stream"
         }
     }
+    
+    func generateQuiz(subject: String) async throws -> [Quiz] {
+        let endpoint = "/quizzes/generate"
+        guard let url = URL(string: baseURL + endpoint) else {
+            throw APIError.invalidURL
+        }
+        
+        var request = URLRequest(url: url)
+        //request.httpMethod = "POST"
+        //request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        //let parameters = ["subject": subject]
+        //request.httpBody = try? JSONEncoder().encode(parameters)
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let response = response as? HTTPURLResponse else {
+            throw APIError.invalidResponse
+        }
+        
+        guard (200...299).contains(response.statusCode) else {
+            throw APIError.httpError(response.statusCode)
+        }
+        
+        return try decoder.decode([Quiz].self, from: data)
+    }
 }

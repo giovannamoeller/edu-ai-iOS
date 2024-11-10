@@ -21,7 +21,7 @@ struct EssayHistoryView: View {
                     case .loading:
                         ProgressView("Carregando suas redações...")
                     case .success(let essays):
-                        ScrollView {
+                        ScrollView(showsIndicators: false) {
                             ForEach(Array(essays.enumerated()), id: \.element.id) { index, essay in
                                 EssayHistoryCardView(id: essays.count - index, essay: essay)
                             }
@@ -76,6 +76,7 @@ struct EssayHistoryView: View {
                 }
                 
             }
+            .padding(.horizontal)
             .navigationTitle("Minhas redações")
             .onAppear {
                 Task {

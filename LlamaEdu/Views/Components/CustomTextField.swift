@@ -9,11 +9,12 @@ import SwiftUI
 
 struct CustomTextField: View {
     let placeholder: String
+    let description: String
     @Binding var text: String
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Digite o assunto principal da redação")
+            Text(description)
                 .font(.subheadline)
                 .foregroundColor(.gray)
                 .fontWeight(.thin)
@@ -26,10 +27,9 @@ struct CustomTextField: View {
                 .cornerRadius(12)
                 .autocapitalization(.sentences)
         }
-        .padding(.horizontal)
     }
 }
 
 #Preview {
-    CustomTextField(placeholder: "Assunto", text: .constant(""))
+    CustomTextField(placeholder: "Assunto", description: "Digite o assunto principal da redação", text: .constant(""))
 }

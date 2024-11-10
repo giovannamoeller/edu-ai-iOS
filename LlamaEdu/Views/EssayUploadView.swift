@@ -42,8 +42,10 @@ struct EssayUploadView: View {
                 .bold()
             CustomTextField(
                 placeholder: "Assunto da redação",
+                description: "Digite o assunto principal da redação.",
                 text: $subject
             )
+            .padding()
             Text("Toque abaixo para importar seu texto e enviar para correção.")
                 .multilineTextAlignment(.center)
                 .padding()

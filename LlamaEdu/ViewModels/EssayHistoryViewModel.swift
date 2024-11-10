@@ -73,6 +73,7 @@ final class EssayHistoryViewModel: ObservableObject {
                     
                     // Fetch updated essays
                     let updatedEssays = try await webService.fetchEssays()
+                    print(updatedEssays)
                     self.essays = updatedEssays
                     
                     // If no essays are still processing, stop polling
